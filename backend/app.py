@@ -21,13 +21,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 FRONTEND_FOLDER = os.path.join(BASE_DIR, "frontend")
 
-print("Frontend Folder:", FRONTEND_FOLDER)
-
-print(
-    "Admin File Exists:",
-    os.path.exists(os.path.join(FRONTEND_FOLDER, "admin.html"))
-)
-
 
 # =====================================
 # 2. FLASK APPLICATION
@@ -51,7 +44,7 @@ app.secret_key = os.environ.get(
 
 
 # =====================================
-# 4. REGISTER AUTHENTICATION ROUTES
+# 4. REGISTER BLUEPRINT
 # =====================================
 
 app.register_blueprint(auth)
@@ -82,7 +75,33 @@ def home():
 
 
 # =====================================
-# 7. USER DASHBOARD
+# 7. LOGIN PAGE
+# =====================================
+
+@app.route("/login.html")
+def login_page():
+
+    return send_from_directory(
+        FRONTEND_FOLDER,
+        "login.html"
+    )
+
+
+# =====================================
+# 8. REGISTER PAGE
+# =====================================
+
+@app.route("/register.html")
+def register_page():
+
+    return send_from_directory(
+        FRONTEND_FOLDER,
+        "register.html"
+    )
+
+
+# =====================================
+# 9. USER DASHBOARD
 # =====================================
 
 @app.route("/dashboard.html")
@@ -98,7 +117,7 @@ def dashboard():
 
 
 # =====================================
-# 8. ADMIN LOGIN PAGE
+# 10. ADMIN PAGE
 # =====================================
 
 @app.route("/admin.html")
@@ -111,30 +130,20 @@ def admin_page():
 
 
 # =====================================
-# 9. OTHER FRONTEND PAGES
+# 11. ROUTE PAGE
 # =====================================
 
-@app.route("/&lt;page&gt;")
-def pages(page):
+@app.route("/route.html")
+def route_page():
 
-    allowed_pages = [
-        "login.html",
-        "register.html",
+    return send_from_directory(
+        FRONTEND_FOLDER,
         "route.html"
-    ]
-
-    if page in allowed_pages:
-
-        return send_from_directory(
-            FRONTEND_FOLDER,
-            page
-        )
-
-    return "Page not found", 404
+    )
 
 
 # =====================================
-# 10. RUN APPLICATION
+# 12. RUN APPLICATION
 # =====================================
 
 if __name__ == "__main__":
