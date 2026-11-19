@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SafeTour - Admin Panel</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="/static/script.js" defer></script>
+</head>
+
+<body>
+
+    <!-- ADMIN LOGIN SECTION -->
+    <section id="adminLoginSection">
+
+        <div class="admin-login-container">
+
+            <h1>SafeTour Admin</h1>
+            <p>Login to manage safety reports and restricted places</p>
+
+            <form id="adminLoginForm">
+
+                <input type="email" id="adminEmail" placeholder="Admin Email" required>
+
+                <input type="password" id="adminPassword" placeholder="Admin Password" required>
+
+                <button type="submit">Admin Login</button>
+
+                <p id="loginMessage"></p>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+    <!-- ADMIN DASHBOARD SECTION -->
+    <section id="adminDashboard" style="display: none;">
+
+        <header class="admin-navbar">
+
+            <h2>SafeTour Admin Panel</h2>
+
+            <button id="adminLogoutBtn">Logout</button>
+
+        </header>
+
+        <main class="admin-container">
+
+            <h1>Dashboard</h1>
+
+            <p>Manage safety reports and restricted places.</p>
+
+
+            <!-- REPORT STATISTICS -->
+            <div class="admin-stats">
+
+                <div class="admin-stat-card">
+                    <h3>Total Reports</h3>
+                    <p id="totalReports">0</p>
+                </div>
+
+                <div class="admin-stat-card">
+                    <h3>Pending Reports</h3>
+                    <p id="pendingReports">0</p>
+                </div>
+
+                <div class="admin-stat-card">
+                    <h3>Verified Reports</h3>
+                    <p id="verifiedReports">0</p>
+                </div>
+
+                <div class="admin-stat-card">
+                    <h3>Rejected Reports</h3>
+                    <p id="rejectedReports">0</p>
+                </div>
+
+            </div>
+
+
+            <!-- REPORTS TABLE -->
+            <section class="admin-reports-section">
+
+                <h2>Submitted Safety Reports</h2>
+
+                <p id="reportMessage"></p>
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>User</th>
+                                <th>Location</th>
+                                <th>Report Type</th>
+                                <th>Description</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="reportsTableBody">
+
+                            <tr>
+                                <td colspan="7">Loading reports...</td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+            <!-- RESTRICTED PLACES MANAGEMENT -->
+            <section class="admin-reports-section">
+
+                <h2>Restricted Places Management</h2>
+
+                <p>
+                    Add and manage locations where tourist entry
+                    is restricted or should be avoided.
+                </p>
+
+                <p id="restrictedMessage"></p>
+
+
+                <!-- ADD RESTRICTED PLACE FORM -->
+                <form id="restrictedPlaceForm">
+                    <div class="place-search-box">
+
+                        <input type="text" id="restrictedPlaceSearch"
+                            placeholder="Search place name (e.g. Bara Imambara, Lucknow)">
+
+                        <button type="button" id="searchRestrictedPlaceBtn">
+                            Search Place
+                        </button>
+
+                    </div>
+
+                    <p id="placeSearchMessage"></p>
+
+
+                    <input type="text" id="restrictedPlaceName" placeholder="Place Name" required>
+
+                    <input type="number" id="restrictedLatitude" placeholder="Latitude" step="any" min="-90" max="90"
+                        required>
+
+                    <input type="number" id="restrictedLongitude" placeholder="Longitude" step="any" min="-180"
+                        max="180" required>
+
+                    <input type="number" id="restrictedRadius" placeholder="Radius in metres (Default 100)" min="10"
+                        max="5000" value="100" required>
+
+                    <textarea id="restrictedReason" placeholder="Reason for restriction" required></textarea>
+
+                    <button type="submit">
+                        Add Restricted Place
+                    </button>
+
+                </form>
+
+
+                <!-- RESTRICTED PLACES TABLE -->
+                <h3>Added Restricted Places</h3>
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Place Name</th>
+                                <th>Latitude</th>
+                                <th>Longitude</th>
+                                <th>Radius</th>
+                                <th>Reason</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="restrictedPlacesTableBody">
+
+                            <tr>
+                                <td colspan="8">
+                                    Loading restricted places...
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </section>
+
+</body>
+
+</html>

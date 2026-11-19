@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | Safe Tour Navigation</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="/static/script.js" defer></script>
+</head>
+
+<body>
+
+    <!-- NAVIGATION BAR -->
+    <header>
+        <nav class="navbar">
+
+            <div class="logo">SafeTour</div>
+
+            <div class="nav-links">
+                <a href="/index.html">Home</a>
+                <a href="#places">Explore Places</a>
+                <a href="#safety">Safety</a>
+                <a href="#reports">Reports</a>
+                <button id="logoutBtn">Logout</button>
+            </div>
+
+        </nav>
+    </header>
+
+
+    <!-- DASHBOARD HERO -->
+    <section class="dashboard-hero">
+
+        <div class="dashboard-content">
+
+            <p>SAFE TOUR NAVIGATION</p>
+
+            <h1>Welcome to Your Dashboard!</h1>
+
+            <h2>Explore New Places, Stay Safe.</h2>
+
+            <p>
+                Discover tourist destinations and check reported
+                road conditions and safety information before travelling.
+            </p>
+
+            <a href="#places" class="primary-btn">
+                Explore Places
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- QUICK INFORMATION -->
+    <section class="dashboard-stats">
+
+        <div class="stat-card">
+            <h2>Explore</h2>
+            <p>Tourist Destinations</p>
+        </div>
+
+        <div class="stat-card">
+            <h2>Check</h2>
+            <p>Safety Reports</p>
+        </div>
+
+        <div class="stat-card">
+            <h2>Travel</h2>
+            <p>With Awareness</p>
+        </div>
+
+    </section>
+
+
+
+    <!-- EXPLORE PLACES -->
+    <section class="dashboard-section" id="places">
+
+        <h2>Explore Lucknow</h2>
+        <p>Discover popular tourist destinations.</p>
+
+        <div class="dashboard-cards">
+
+            <div class="place-card">
+                <img src="/static/img/bara_imambara.jpg" width="400px" height="400px" alt="Bara Imambara" class="place-image">
+
+                <h3>Bara Imambara</h3>
+                <p>Explore the famous historical monument of Lucknow.</p>
+                <a href="/route.html?place=bara-imambara">View Details</a>
+            </div>
+
+            <div class="place-card">
+
+
+                <img src="/static/img/rumidarwaja.webp" width="400px" height="400px" alt="Rumi Darwaza" class="place-image">
+
+
+                <h3>Rumi Darwaza</h3>
+                <p>Discover the beautiful historical gateway.</p>
+                <a href="/route.html?place=rumi-darwaza">View Details</a>
+            </div>
+
+            <div class="place-card">
+
+
+                <img src="/static/img/ambedkar park.webp"   width="400px" height="400px" alt="Ambedkar Memorial Park" class="place-image">
+
+
+                <h3>Ambedkar Memorial Park</h3>
+                <p>Explore the famous memorial park.</p>
+                <a href="/route.html?place=ambedkar-park">View Details</a>
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- SAFETY INFORMATION -->
+    <section class="dashboard-section" id="safety">
+
+        <h2>Travel Safety Information</h2>
+
+        <p>
+            Check available reports about road conditions,
+            potholes and reported danger areas.
+        </p>
+
+        <div class="safety-card">
+            <h3>Safety Awareness</h3>
+
+            <p>
+                Always check the latest available reports before
+                visiting an unfamiliar location.
+            </p>
+        </div>
+
+    </section>
+
+
+    <!-- REPORT SECTION -->
+    <section class="dashboard-section" id="reports">
+
+        <h2>Report a Problem</h2>
+
+        <p>
+            Help other travellers by sharing road and safety-related
+            observations.
+        </p>
+
+        <a href="/route.html" class="primary-btn">
+            Submit a Report
+        </a>
+
+    </section>
+    <!-- MY SAFETY REPORT HISTORY -->
+
+    <section class="report-history">
+
+        <h2>My Safety Report History</h2>
+
+        <div id="myReportsList">
+            Loading your reports...
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+
+        <h3>SafeTour</h3>
+
+        <p>Explore New Places, Stay Safe.</p>
+
+        <p>© 2026 Safe Tour Navigation</p>
+
+    </footer>
+
+</body>
+
+</html>

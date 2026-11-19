@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Route Details | Safe Tour Navigation</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+
+    <!-- Leaflet Map CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
+    <script src="/static/script.js" defer></script>
+</head>
+
+<body>
+
+    <!-- NAVIGATION BAR -->
+    <header>
+        <nav class="navbar">
+
+            <div class="logo">SafeTour</div>
+
+            <div class="nav-links">
+                <a href="/dashboard.html">Dashboard</a>
+                <a href="/dashboard.html#places">Explore Places</a>
+                <a href="/dashboard.html#safety">Safety</a>
+                <button id="logoutBtn">Logout</button>
+            </div>
+
+        </nav>
+    </header>
+
+
+    <!-- PAGE HEADING -->
+    <section class="route-hero">
+
+        <p>SAFE TOUR NAVIGATION</p>
+
+        <h1>Explore Your Destination</h1>
+
+        <p>Get destination details and travel safety information.</p>
+
+    </section>
+
+
+    <!-- DESTINATION DETAILS -->
+    <section class="route-section">
+
+        <h2>Destination Details</h2>
+
+        <div class="destination-card">
+
+            <h3>Bara Imambara</h3>
+
+            <p>
+                Bara Imambara is a famous historical monument
+                located in Lucknow, Uttar Pradesh.
+            </p>
+
+            <p>
+                <strong>Location:</strong> Hussainabad, Lucknow
+            </p>
+
+            <p>
+                <strong>Category:</strong> Historical Place
+            </p>
+
+        </div>
+
+    </section>
+<!-- LIVE LOCATION SAFETY -->
+<section class="route-section live-safety-section">
+
+    <h2>Live Location Safety</h2>
+
+    <div class="route-safety-card">
+
+        <p>Monitor the safety of your current area while moving.</p>
+
+        <button type="button" id="startLiveSafety">
+            Start Live Safety
+        </button>
+
+        <button type="button" id="stopLiveSafety" disabled>
+            Stop Live Safety
+        </button>
+
+        <div id="liveSafetyStatus">
+            Live tracking is not started.
+        </div>
+
+        <p id="liveLocationMessage"></p>
+
+    </div>
+
+</section>
+
+
+    <!-- SAFETY REPORT FORM -->
+    <section class="route-section">
+
+        <h2>Report a Safety Problem</h2>
+
+        <div class="route-info-card">
+
+            <form id="safetyReportForm">
+
+                <label for="reportLocation">Location</label>
+
+                <input type="text" id="reportLocation" name="location" placeholder="Enter location" required>
+
+                <label for="reportLatitude">Latitude</label>
+
+                <input type="number" id="reportLatitude" name="latitude" step="any" placeholder="Enter latitude"
+                    required>
+
+                <label for="reportLongitude">Longitude</label>
+
+                <input type="number" id="reportLongitude" name="longitude" step="any" placeholder="Enter longitude"
+                    required>
+
+                <button type="button" id="detectLocationBtn" class="primary-btn">
+                    Detect My Location
+                </button>
+
+                <p id="locationMessage"></p>
+
+
+                <label for="reportType">Report Type</label>
+
+                <select id="reportType" name="report_type" required>
+
+                    <option value="">Select Report Type</option>
+                    <option value="pothole">Pothole / Damaged Road</option>
+                    <option value="open_pit">Open Pit / Uncovered Drain</option>
+                    <option value="poor_lighting">Poor Lighting</option>
+                    <option value="unsafe_structure">Broken Railing / Unsafe Structure</option>
+                    <option value="road_blockage">Road Blockage / Construction</option>
+                    <option value="other">Other Hazard</option>
+
+                </select>
+
+
+                <label for="reportDescription">Description</label>
+
+                <textarea id="reportDescription" name="description" placeholder="Describe the safety problem"
+                    required></textarea>
+
+
+                <button type="submit" class="primary-btn">
+                    Submit Safety Report
+                </button>
+
+            </form>
+
+            <p id="reportMessage"></p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ROUTE INFORMATION -->
+    <section class="route-section">
+
+        <h2>Route Information</h2>
+
+        <div class="route-info-card">
+
+            <p>
+                <strong>Starting Point:</strong>
+                Your current location
+            </p>
+
+            <p>
+                <strong>Destination:</strong>
+                Bara Imambara, Lucknow
+            </p>
+
+            <p>
+                <strong>Route Status:</strong>
+                Route information not available yet
+            </p>
+
+            <button type="button" class="primary-btn" disabled>
+                Safe Route Coming Soon
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- MAP SECTION -->
+    <section class="map-section">
+
+        <h2>Destination Map</h2>
+
+        <p>View your selected destination on the map.</p>
+
+
+        <!-- SAFETY REPORT SUMMARY -->
+        <div class="safety-summary">
+
+            <h3>Safety Report Summary</h3>
+
+            <div id="safetyStatus" class="safety-status">
+                Checking safety reports...
+            </div>
+
+            <p class="safety-note">
+                Status is based on verified reports only.
+                It is not a guarantee of safety.
+            </p>
+
+            <div class="summary-item">
+                <span>Total Verified Reports</span>
+                <strong id="totalVerifiedReports">0</strong>
+            </div>
+
+            <div class="summary-item">
+                <span>Caution Reports</span>
+                <strong id="cautionReports">0</strong>
+            </div>
+
+            <div class="summary-item">
+                <span>Danger Reports</span>
+                <strong id="dangerReports">0</strong>
+            </div>
+
+        </div>
+
+
+        <!-- MAP LEGEND -->
+        <div class="map-legend">
+
+            <h3>Map Legend</h3>
+
+            <div class="legend-item">
+                <span class="legend-dot blue-dot"></span>
+                <span>Tourist Destination</span>
+            </div>
+
+            <div class="legend-item">
+                <span class="legend-dot orange-dot"></span>
+                <span>Caution Report</span>
+            </div>
+
+            <div class="legend-item">
+                <span class="legend-dot red-dot"></span>
+                <span>Danger Report</span>
+            </div>
+
+        </div>
+
+
+        <!-- DESTINATION MAP -->
+        <div id="destinationMap" style="height: 400px; width: 100%;"></div>
+
+
+        <!-- RESTRICTED AREA WARNING -->
+        <div id="restrictedAreaWarning" class="safety-warning" style="display: none;">
+
+            <h3>Restricted Area Alert</h3>
+
+            <p id="restrictedAreaMessage"></p>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer class="footer">
+
+        <h3>SafeTour</h3>
+
+        <p>Explore New Places, Stay Safe.</p>
+
+        <p>© 2026 Safe Tour Navigation</p>
+
+    </footer>
+
+
+    <!-- LEAFLET MAP JAVASCRIPT -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+</body>
+
+</html>
