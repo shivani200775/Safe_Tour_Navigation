@@ -1,9 +1,10 @@
-
+from werkzeug.security import generate_password_hash
 import os
 
 from flask import Flask, send_from_directory, session, redirect
 
 from database import (
+        get_db_connection,
     create_users_table,
     create_safety_reports_table,
     create_admins_table,
@@ -48,6 +49,41 @@ app.secret_key = os.environ.get(
 # =====================================
 
 app.register_blueprint(auth)
+def create_default_admin():
+
+    email = os.environ.get("ADMIN_EMAIL", "").strip().lower()
+    password = os.environ.get("ADMIN_PASSWORD", "")
+
+    if not email or not password:
+        print("Admin environment variables missing.")
+        return
+
+    conn = get_db_connection()
+
+    try:
+        admin = conn.execute(
+            "SELECT id FROM admins WHERE email = ?",
+            (email,)
+        ).fetchone()
+
+        if not admin:
+            conn.execute("""
+                INSERT INTO admins (name, email, password)
+                VALUES (?, ?, ?)
+            """, (
+                "Shivani",
+                email,
+                generate_password_hash(password)
+            ))
+
+            conn.commit()
+            print("Admin account created successfully.")
+
+        else:
+            print("Admin account already exists.")
+
+    finally:
+        conn.close()
 
 
 # =====================================
@@ -58,6 +94,7 @@ create_users_table()
 create_safety_reports_table()
 create_admins_table()
 create_restricted_places_table()
+create_default_admin()
 
 
 # =====================================
